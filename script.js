@@ -122,29 +122,37 @@ const caseArt = [
   `<div class="flow-lines"><i></i><i></i><i></i><i></i></div><div class="flow-node flow-node-a"><b></b><i></i><i></i></div><div class="flow-node flow-node-b"><b></b><i></i><i></i></div><div class="flow-node flow-node-c"><b></b><i></i><i></i></div><div class="flow-node flow-node-d"><b></b><i></i><i></i></div><div class="flow-hub"><span>TD</span></div><span class="art-caption">TD / 03</span>`
 ];
 
+// All three translations are rendered on top of each other and only the active
+// one is visible, so every block keeps the size of its longest translation and
+// the layout does not jump when the language changes.
+const languages = ["uz", "ru", "en"];
+function stack(pick, lang) {
+  return `<t-stack>${languages.map(l => `<t-v lang="${l}"${l === lang ? "" : ' aria-hidden="true"'}>${pick(copy[l])}</t-v>`).join("")}</t-stack>`;
+}
+
 function renderLists(lang) {
-  const data = copy[lang];
-  document.querySelector("#case-grid").innerHTML = data.cases.map(([category, title, challenge, direction, intent], i) => `
+  const t = pick => stack(pick, lang);
+  document.querySelector("#case-grid").innerHTML = copy.en.cases.map((_, i) => `
     <article class="case-card case-card-${i + 1} ${i === 0 ? "case-featured" : ""}">
       <div class="case-art case-art-${i + 1}" aria-hidden="true">${caseArt[i]}</div>
       <div class="case-content">
-        <div class="case-meta"><span>${category}</span><span class="case-badge">${data.caseBadge}</span></div>
-        <h3>${title}</h3>
+        <div class="case-meta"><span>${t(d => d.cases[i][0])}</span><span class="case-badge">${t(d => d.caseBadge)}</span></div>
+        <h3>${t(d => d.cases[i][1])}</h3>
         <div class="case-details">
-          <div class="case-detail"><span>${data.caseChallenge}</span><p>${challenge}</p></div>
-          <div class="case-detail"><span>${data.caseDirection}</span><p>${direction}</p></div>
+          <div class="case-detail"><span>${t(d => d.caseChallenge)}</span><p>${t(d => d.cases[i][2])}</p></div>
+          <div class="case-detail"><span>${t(d => d.caseDirection)}</span><p>${t(d => d.cases[i][3])}</p></div>
         </div>
-        <div class="case-intent"><span aria-hidden="true">↗</span><div><small>${data.caseIntent}</small><p>${intent}</p></div></div>
+        <div class="case-intent"><span aria-hidden="true">↗</span><div><small>${t(d => d.caseIntent)}</small><p>${t(d => d.cases[i][4])}</p></div></div>
       </div>
     </article>`).join("");
-  document.querySelector("#service-grid").innerHTML = data.services.map(([title, description], i) => `
+  document.querySelector("#service-grid").innerHTML = copy.en.services.map((_, i) => `
     <article class="service-card">
       <div class="service-card-top"><span class="service-index">0${i + 1} / 04</span><span class="service-icon">${icons[i]}</span></div>
-      <h3>${title}</h3><p>${description}</p>
+      <h3>${t(d => d.services[i][0])}</h3><p>${t(d => d.services[i][1])}</p>
     </article>`).join("");
-  document.querySelector("#process-list").innerHTML = data.process.map(([title, description], i) => `
-    <article class="process-item"><span class="process-number">0${i + 1}</span><div><h3>${title}</h3><p>${description}</p></div></article>`).join("");
-  document.querySelector("#principles").innerHTML = data.principles.map(item => `<span class="principle">${item}</span>`).join("");
+  document.querySelector("#process-list").innerHTML = copy.en.process.map((_, i) => `
+    <article class="process-item"><span class="process-number">0${i + 1}</span><div><h3>${t(d => d.process[i][0])}</h3><p>${t(d => d.process[i][1])}</p></div></article>`).join("");
+  document.querySelector("#principles").innerHTML = copy.en.principles.map((_, i) => `<span class="principle">${t(d => d.principles[i])}</span>`).join("");
 }
 
 function setLanguage(lang) {
@@ -155,8 +163,8 @@ function setLanguage(lang) {
   document.querySelector('meta[property="og:title"]').content = data.metaTitle;
   document.querySelector('meta[property="og:description"]').content = data.metaDescription;
   document.querySelectorAll("[data-i18n]").forEach(element => {
-    const value = data[element.dataset.i18n];
-    if (value !== undefined) element.innerHTML = value;
+    const key = element.dataset.i18n;
+    if (data[key] !== undefined) element.innerHTML = stack(d => d[key], lang);
   });
   document.querySelectorAll("[data-i18n-aria]").forEach(element => {
     const value = data[element.dataset.i18nAria];
@@ -204,14 +212,13 @@ function contactLink(key, value) {
 
 function renderContact(lang) {
   if (!contactData) return;
-  const labels = (copy[lang] || copy.en).contactLabels;
   const items = contactOrder.filter(key => contactData[key]).map(key => {
     const value = contactData[key];
     const href = contactLink(key, value);
     const shown = key === "telegram" || key === "instagram" ? "@" + value.replace(/^@/, "").replace(/^https?:\/\/(www\.)?(t\.me|instagram\.com)\//, "").replace(/\/$/, "") : value;
     const external = key === "telegram" || key === "instagram" ? ' target="_blank" rel="noopener"' : "";
     const valueHtml = href ? `<a class="contact-value" href="${escapeHtml(href)}"${external}>${escapeHtml(shown)}</a>` : `<span class="contact-value">${escapeHtml(shown)}</span>`;
-    return `<li><span class="contact-label">${labels[key]}</span>${valueHtml}</li>`;
+    return `<li><span class="contact-label">${stack(d => d.contactLabels[key], lang)}</span>${valueHtml}</li>`;
   });
   if (items.length) document.querySelector("#contact-list").innerHTML = items.join("");
   if (contactData.email) document.querySelector(".contact-button").href = `mailto:${contactData.email}?subject=Project%20enquiry`;
