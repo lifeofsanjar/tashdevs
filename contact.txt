@@ -9,12 +9,12 @@
 # Examples:
 #   phone: +998 99 953 33 52  
 #   telegram: lifeofsanjar          (username only, without @ or a link)
-#   instagram: tashdevs.uz      (username only)
+#   instagram: lifeofsanjar      (username only)
 #   address: Tashkent, Uzbekistan
 
 email: hello@tashdevs.uz
-phone:
-telegram:
-instagram:
-address:
-working_hours:
+phone: +998 99 953 33 52
+telegram: lifeofsanjar  
+instagram: lifeofsanjar  
+address: Chilonzor , Tashkent , Uzbekistan 
+working_hours: 24/7
