@@ -97,6 +97,17 @@ function renderContact(lang) {
       link.hidden = true;
     }
   });
+  document.querySelectorAll("[data-contact-telegram]").forEach(link => {
+    if (contactData.telegram) {
+      const handle = socialHandle(contactData.telegram);
+      link.href = `https://t.me/${handle}`;
+      link.setAttribute("aria-label", `Telegram @${handle}`);
+      link.querySelector(".header-telegram-handle").textContent = `@${handle}`;
+      link.hidden = false;
+    } else {
+      link.hidden = true;
+    }
+  });
   document.querySelector("#contact-list").innerHTML = contactOrder.filter(key => contactData[key]).map(key => {
     const value = contactData[key];
     const social = key === "telegram" || key === "instagram";
