@@ -2,7 +2,7 @@ const copy = {
   en: {
     metaTitle: "TashDevs — Digital products that work",
     metaDescription: "TashDevs brings product strategy, design and engineering together to build digital products around real business needs.",
-    skip: "Skip to content", brandTag: "PRODUCT ENGINEERING STUDIO", brandHome: "TashDevs home", menuLabel: "Open menu", menuCloseLabel: "Close menu", navLabel: "Main navigation", languageLabel: "Language",
+    skip: "Skip to content", brandTag: "INNOVATIVE IT SOLUTIONS", brandHome: "TashDevs home", menuLabel: "Open menu", menuCloseLabel: "Close menu", navLabel: "Main navigation", languageLabel: "Language",
     navServices: "Services", navCases: "Case studies", navApproach: "Approach", navAbout: "About", navContact: "Contact",
     heroEyebrow: "DIGITAL PRODUCTS / SOFTWARE ENGINEERING", heroTitle: "Ideas.<br>Products.<br><span>In motion.</span>",
     heroLead: "One focused team for product strategy, design and engineering—building digital products around real business needs.",
@@ -32,12 +32,13 @@ const copy = {
       ["Build with care", "We deliver in clear increments, sharing progress and decisions along the way."],
       ["Support what ships", "We help your team maintain, improve and grow the product over time."]
     ],
-    principles: ["Clear communication", "Practical decisions", "Long-term thinking"]
+    principles: ["Clear communication", "Practical decisions", "Long-term thinking"],
+    contactLabels: { email: "Email", phone: "Phone", telegram: "Telegram", instagram: "Instagram", address: "Address", working_hours: "Working hours" }
   },
   uz: {
     metaTitle: "TashDevs — Raqamli mahsulotlar va dasturiy ishlab chiqish",
     metaDescription: "TashDevs strategiya, dizayn va muhandislikni birlashtirib, biznes ehtiyojlariga mos raqamli mahsulotlar yaratadi.",
-    skip: "Asosiy mazmunga o‘tish", brandTag: "RAQAMLI MAHSULOTLAR JAMOASI", brandHome: "TashDevs bosh sahifa", menuLabel: "Menyuni ochish", menuCloseLabel: "Menyuni yopish", navLabel: "Asosiy menyu", languageLabel: "Til",
+    skip: "Asosiy mazmunga o‘tish", brandTag: "INNOVATSION IT YECHIMLAR", brandHome: "TashDevs bosh sahifa", menuLabel: "Menyuni ochish", menuCloseLabel: "Menyuni yopish", navLabel: "Asosiy menyu", languageLabel: "Til",
     navServices: "Xizmatlar", navCases: "Keyslar", navApproach: "Yondashuv", navAbout: "Biz haqimizda", navContact: "Aloqa",
     heroEyebrow: "RAQAMLI MAHSULOTLAR / DASTURIY ISHLAB CHIQISH", heroTitle: "G‘oya.<br>Mahsulot.<br><span>Natija.</span>",
     heroLead: "Mahsulot strategiyasi, dizayn va muhandislikni bir jamoada jamlaymiz. Biznes ehtiyojlariga mos raqamli mahsulotlar yaratamiz.",
@@ -67,12 +68,13 @@ const copy = {
       ["Puxta ishlab chiqish", "Jarayon va qarorlarni ochiq muhokama qilib, ishni bosqichma-bosqich topshiramiz."],
       ["Tayyor mahsulotni qo‘llab-quvvatlash", "Jamoangizga mahsulotni saqlash, takomillashtirish va rivojlantirishda ko‘mak beramiz."]
     ],
-    principles: ["Ochiq muloqot", "Amaliy qarorlar", "Uzoq muddatli fikrlash"]
+    principles: ["Ochiq muloqot", "Amaliy qarorlar", "Uzoq muddatli fikrlash"],
+    contactLabels: { email: "Email", phone: "Telefon", telegram: "Telegram", instagram: "Instagram", address: "Manzil", working_hours: "Ish vaqti" }
   },
   ru: {
     metaTitle: "TashDevs — Цифровые продукты, которые работают",
     metaDescription: "TashDevs объединяет стратегию продукта, дизайн и разработку для решения задач бизнеса.",
-    skip: "Перейти к содержимому", brandTag: "СТУДИЯ ПРОДУКТОВОЙ РАЗРАБОТКИ", brandHome: "Главная страница TashDevs", menuLabel: "Открыть меню", menuCloseLabel: "Закрыть меню", navLabel: "Главная навигация", languageLabel: "Язык",
+    skip: "Перейти к содержимому", brandTag: "ИННОВАЦИОННЫЕ IT-РЕШЕНИЯ", brandHome: "Главная страница TashDevs", menuLabel: "Открыть меню", menuCloseLabel: "Закрыть меню", navLabel: "Главная навигация", languageLabel: "Язык",
     navServices: "Услуги", navCases: "Примеры", navApproach: "Подход", navAbout: "О команде", navContact: "Контакты",
     heroEyebrow: "ЦИФРОВЫЕ ПРОДУКТЫ / РАЗРАБОТКА ПО", heroTitle: "Идея.<br>Продукт.<br><span>В деле.</span>",
     heroLead: "Стратегия продукта, дизайн и разработка в одной команде. Создаём цифровые решения для конкретных задач бизнеса.",
@@ -102,7 +104,8 @@ const copy = {
       ["Разрабатываем внимательно", "Показываем результат поэтапно и обсуждаем ход работы и решения."],
       ["Поддерживаем продукт", "Помогаем команде сопровождать, улучшать и развивать готовый продукт."]
     ],
-    principles: ["Открытое общение", "Практичные решения", "Долгосрочный подход"]
+    principles: ["Открытое общение", "Практичные решения", "Долгосрочный подход"],
+    contactLabels: { email: "Email", phone: "Телефон", telegram: "Telegram", instagram: "Instagram", address: "Адрес", working_hours: "Часы работы" }
   }
 };
 
@@ -162,8 +165,62 @@ function setLanguage(lang) {
   document.querySelectorAll("[data-lang]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.lang === lang)));
   menuToggle.setAttribute("aria-label", data[menuToggle.getAttribute("aria-expanded") === "true" ? "menuCloseLabel" : "menuLabel"]);
   renderLists(lang);
+  renderContact(lang);
   try { localStorage.setItem("tashdevs-language", lang); } catch {}
 }
+
+// Contact details come from /contact.txt (edit that file on GitHub).
+const contactOrder = ["email", "phone", "telegram", "instagram", "address", "working_hours"];
+let contactData = null;
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+}
+
+function parseContactFile(text) {
+  const data = {};
+  text.split(/\r?\n/).forEach(line => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const colon = trimmed.indexOf(":");
+    if (colon === -1) return;
+    const key = trimmed.slice(0, colon).trim().toLowerCase().replace(/\s+/g, "_");
+    const value = trimmed.slice(colon + 1).trim();
+    if (value) data[key] = value;
+  });
+  return data;
+}
+
+function contactLink(key, value) {
+  const handle = value.replace(/^@/, "").replace(/^https?:\/\/(www\.)?(t\.me|instagram\.com)\//, "").replace(/\/$/, "");
+  switch (key) {
+    case "email": return `mailto:${value}`;
+    case "phone": return `tel:${value.replace(/[^+\d]/g, "")}`;
+    case "telegram": return `https://t.me/${handle}`;
+    case "instagram": return `https://instagram.com/${handle}`;
+    default: return null;
+  }
+}
+
+function renderContact(lang) {
+  if (!contactData) return;
+  const labels = (copy[lang] || copy.en).contactLabels;
+  const items = contactOrder.filter(key => contactData[key]).map(key => {
+    const value = contactData[key];
+    const href = contactLink(key, value);
+    const shown = key === "telegram" || key === "instagram" ? "@" + value.replace(/^@/, "").replace(/^https?:\/\/(www\.)?(t\.me|instagram\.com)\//, "").replace(/\/$/, "") : value;
+    const external = key === "telegram" || key === "instagram" ? ' target="_blank" rel="noopener"' : "";
+    const valueHtml = href ? `<a class="contact-value" href="${escapeHtml(href)}"${external}>${escapeHtml(shown)}</a>` : `<span class="contact-value">${escapeHtml(shown)}</span>`;
+    return `<li><span class="contact-label">${labels[key]}</span>${valueHtml}</li>`;
+  });
+  if (items.length) document.querySelector("#contact-list").innerHTML = items.join("");
+  if (contactData.email) document.querySelector(".contact-button").href = `mailto:${contactData.email}?subject=Project%20enquiry`;
+}
+
+fetch("/contact.txt", { cache: "no-cache" })
+  .then(response => (response.ok ? response.text() : Promise.reject()))
+  .then(text => { contactData = parseContactFile(text); renderContact(document.documentElement.lang); })
+  .catch(() => {});
 
 const languageButtons = document.querySelectorAll("[data-lang]");
 languageButtons.forEach(button => button.addEventListener("click", () => setLanguage(button.dataset.lang)));

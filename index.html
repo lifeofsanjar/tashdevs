@@ -3,26 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f6f5f1" />
+    <meta name="theme-color" content="#000000" />
     <meta name="description" content="TashDevs strategiya, dizayn va muhandislikni birlashtirib, biznes ehtiyojlariga mos raqamli mahsulotlar yaratadi." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="TashDevs — Raqamli mahsulotlar va dasturiy ishlab chiqish" />
     <meta property="og:description" content="Strategiya, dizayn va muhandislikni birlashtirgan raqamli mahsulotlar jamoasi." />
+    <meta property="og:image" content="/assets/logo-original.jpg" />
     <title>TashDevs — Raqamli mahsulotlar va dasturiy ishlab chiqish</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css?v=20261106-5" />
-    <script src="/script.js?v=20261106-5" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=20261124-1" />
+    <script src="/script.js?v=20261124-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip">Asosiy mazmunga o‘tish</a>
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="#top" aria-label="TashDevs bosh sahifa" data-i18n-aria="brandHome">
-          <span class="brand-mark" aria-hidden="true"><span>T</span><span>D</span></span>
-          <span class="brand-name">Tash<span>Devs</span><small data-i18n="brandTag">RAQAMLI MAHSULOTLAR JAMOASI</small></span>
+          <img class="brand-mark" src="/assets/logo-mark.png" alt="" width="193" height="170" />
+          <span class="brand-name">Tash<span>Devs</span><small data-i18n="brandTag">INNOVATSION IT YECHIMLAR</small></span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-i18n-aria="menuLabel">
           <span></span><span></span><span class="sr-only" data-i18n="menuLabel">Menyuni ochish</span>
@@ -58,9 +60,8 @@
         <div class="hero-visual" aria-label="TashDevs mahsulot yaratish jarayoni" data-i18n-aria="diagramLabel">
           <div class="visual-topline"><span data-i18n="visualCaption">ISHNI OLDINGA SILJITUVCHI YECHIMLAR</span><span class="visual-index">TD—01</span></div>
           <div class="poster-grid" aria-hidden="true">
-            <div class="poster-giant">TD<span>/</span></div>
-            <div class="poster-index">DIGITAL<br />PRODUCTS<br /><b>2026—01</b></div>
-            <div class="poster-stamp">T<br />D</div>
+            <img class="poster-logo" src="/assets/logo.png" alt="" width="536" height="170" />
+            <div class="poster-index">INNOVATIVE<br />IT SOLUTIONS<br /><b>2026—01</b></div>
             <div class="poster-orbit"></div>
             <div class="poster-lines"><i></i><i></i><i></i><i></i><i></i></div>
           </div>
@@ -78,7 +79,7 @@
       <section class="intro-strip">
         <div class="section-shell intro-inner">
           <p data-i18n="introText">Texnologiya ishni aniqroq, tezroq va qulayroq qilishi kerak. Buning uchun mahsulotga oid fikrlashni puxta muhandislik bilan birlashtiramiz.</p>
-          <span class="intro-mark" aria-hidden="true">T<span>D</span></span>
+          <img class="intro-mark" src="/assets/logo-mark.png" alt="" width="193" height="170" />
         </div>
       </section>
 
@@ -133,11 +134,16 @@
             <p data-i18n="contactLead">Rejalaringiz bilan o‘rtoqlashing. Biz aniq va amaliy yo‘lni topishga yordam beramiz.</p>
             <a class="button button-light contact-button" href="mailto:hello@tashdevs.uz?subject=Project%20enquiry"><span data-i18n="contactCta">TashDevs’ga yozish</span><span aria-hidden="true">↗</span></a>
           </div>
-          <div class="contact-meta"><span data-i18n="contactResponse">Jamoa bilan bevosita aloqa</span><span class="contact-email">hello@tashdevs.uz</span></div>
+          <div class="contact-meta">
+            <span data-i18n="contactResponse">Jamoa bilan bevosita aloqa</span>
+            <ul class="contact-list" id="contact-list">
+              <li><span class="contact-label">Email</span><a class="contact-value" href="mailto:hello@tashdevs.uz">hello@tashdevs.uz</a></li>
+            </ul>
+          </div>
           <span class="contact-number">TD—03</span>
         </div>
         <footer class="site-footer">
-          <a class="brand footer-brand" href="#top" aria-label="TashDevs bosh sahifa" data-i18n-aria="brandHome"><span class="brand-mark" aria-hidden="true"><span>T</span><span>D</span></span><span class="brand-name">Tash<span>Devs</span><small data-i18n="brandTag">RAQAMLI MAHSULOTLAR JAMOASI</small></span></a>
+          <a class="brand footer-brand" href="#top" aria-label="TashDevs bosh sahifa" data-i18n-aria="brandHome"><img class="brand-mark" src="/assets/logo-mark.png" alt="" width="193" height="170" /><span class="brand-name">Tash<span>Devs</span><small data-i18n="brandTag">INNOVATSION IT YECHIMLAR</small></span></a>
           <p data-i18n="footerNote">Mustaqil fikr. Puxta muhandislik.</p>
           <span>© <span id="year"></span> TashDevs</span>
         </footer>

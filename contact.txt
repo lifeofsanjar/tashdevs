@@ -1,0 +1,20 @@
+# TashDevs — contact details shown in the "Contact" section of the website.
+#
+# How to edit:
+#   - Change only the text after the colon ( : ).
+#   - Leave a value empty to hide that line on the website.
+#   - Lines starting with # are notes and are ignored.
+#   - After you save (commit) this file on GitHub, Netlify updates the site in about a minute.
+#
+# Examples:
+#   phone: +998 90 123 45 67
+#   telegram: tashdevs          (username only, without @ or a link)
+#   instagram: tashdevs.uz      (username only)
+#   address: Tashkent, Uzbekistan
+
+email: hello@tashdevs.uz
+phone:
+telegram:
+instagram:
+address:
+working_hours:
