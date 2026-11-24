@@ -16,5 +16,5 @@ email: hello@tashdevs.uz
 phone: +998 99 953 33 52
 telegram: lifeofsanjar  
 instagram: lifeofsanjar  
-address: Chilonzor , Tashkent , Uzbekistan 
+address: Chilonzor tumani, Tashkent, Uzbekistan 
 working_hours: 24/7
