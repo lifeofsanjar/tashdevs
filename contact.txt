@@ -7,8 +7,8 @@
 #   - After you save (commit) this file on GitHub, Netlify updates the site in about a minute.
 #
 # Examples:
-#   phone: +998 90 123 45 67
-#   telegram: tashdevs          (username only, without @ or a link)
+#   phone: +998 99 953 33 52  
+#   telegram: lifeofsanjar          (username only, without @ or a link)
 #   instagram: tashdevs.uz      (username only)
 #   address: Tashkent, Uzbekistan
 
