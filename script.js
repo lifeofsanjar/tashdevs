@@ -8,7 +8,7 @@ const copy = {
     statement: "Innovatsion IT yechimlar",
     lead: "Mahsulot strategiyasi, dizayn va muhandislikni bir jamoada jamlaymiz. Biznes ehtiyojlariga mos raqamli mahsulotlar yaratamiz.",
     photoAlt: "Toshkent shahri va tog‘lar manzarasi",
-    contactLead: "Rejalaringiz bilan o‘rtoqlashing. Biz aniq va amaliy yo‘lni topishga yordam beramiz.",
+    contactLead: "Sizga veb-sayt, mobil ilova yoki jamoangiz vaqtini tejaydigan biznes tizimi kerakmi? Biz veb-saytlar, veb va mobil ilovalar, biznes platformalari, tizimlar integratsiyasi hamda sun’iy intellekt yordamida avtomatlashtirish yechimlarini yaratamiz. G‘oyangizni bizga yozing — uni aniq rejaga va ishlaydigan mahsulotga aylantirishga yordam beramiz.",
     services: "Raqamli mahsulotlar | Biznes platformalari | Tizimlar integratsiyasi | Avtomatlashtirish va AI",
     contactLabels: { email: "Email", phone: "Telefon", telegram: "Telegram", instagram: "Instagram", address: "Manzil", working_hours: "Ish vaqti" }
   },
@@ -21,7 +21,7 @@ const copy = {
     statement: "Инновационные IT-решения",
     lead: "Стратегия продукта, дизайн и разработка в одной команде. Создаём цифровые решения для конкретных задач бизнеса.",
     photoAlt: "Панорама Ташкента с горами",
-    contactLead: "Расскажите о планах. Мы поможем найти ясный и практичный путь вперёд.",
+    contactLead: "Нужен сайт, мобильное приложение или система, которая сэкономит время вашей команды? Мы создаём сайты, веб- и мобильные приложения, бизнес-платформы, интеграции между системами и автоматизацию с помощью искусственного интеллекта. Напишите нам о своей идее — поможем превратить её в понятный план и работающий продукт.",
     services: "Цифровые продукты | Бизнес-платформы | Интеграция систем | Автоматизация и ИИ",
     contactLabels: { email: "Email", phone: "Телефон", telegram: "Telegram", instagram: "Instagram", address: "Адрес", working_hours: "Часы работы" }
   },
@@ -34,7 +34,7 @@ const copy = {
     statement: "Innovative IT solutions",
     lead: "One focused team for product strategy, design and engineering—building digital products around real business needs.",
     photoAlt: "Tashkent skyline with mountains",
-    contactLead: "Share what you are planning. We will help you find a clear, practical way forward.",
+    contactLead: "Need a website, a mobile app or a system that saves your team time? We build websites, web and mobile apps, business platforms, integrations between your systems and AI-powered automation. Write to us about your idea — we will help turn it into a clear plan and a working product.",
     services: "Digital products | Business platforms | Systems integration | Automation & AI",
     contactLabels: { email: "Email", phone: "Phone", telegram: "Telegram", instagram: "Instagram", address: "Address", working_hours: "Working hours" }
   }
@@ -50,7 +50,7 @@ function stack(pick, lang) {
 }
 
 // ---- Contact details: edit contact.txt in the GitHub repo ----
-const contactOrder = ["phone", "telegram", "instagram", "address", "working_hours"];
+const contactOrder = ["email", "phone", "telegram", "instagram", "address", "working_hours"];
 let contactData = null;
 
 function escapeHtml(value) {
@@ -75,8 +75,15 @@ function socialHandle(value) {
   return value.replace(/^@/, "").replace(/^https?:\/\/(www\.)?(t\.me|instagram\.com)\//, "").replace(/\/$/, "");
 }
 
+// Long email addresses may wrap only at the "@".
+function emailHtml(email) {
+  const at = email.lastIndexOf("@");
+  return at > 0 ? `${escapeHtml(email.slice(0, at))}<wbr>${escapeHtml(email.slice(at))}` : escapeHtml(email);
+}
+
 function contactLink(key, value) {
   switch (key) {
+    case "email": return `mailto:${value}`;
     case "phone": return `tel:${value.replace(/[^+\d]/g, "")}`;
     case "telegram": return `https://t.me/${socialHandle(value)}`;
     case "instagram": return `https://instagram.com/${socialHandle(value)}`;
@@ -86,15 +93,28 @@ function contactLink(key, value) {
 
 function renderContact(lang) {
   if (!contactData) return;
-  document.querySelectorAll("[data-contact-email]").forEach(link => {
-    if (contactData.email) {
-      const at = contactData.email.lastIndexOf("@");
-      // allow the long address to wrap only at the "@"
-      link.innerHTML = at > 0 ? `${escapeHtml(contactData.email.slice(0, at))}<wbr>${escapeHtml(contactData.email.slice(at))}` : escapeHtml(contactData.email);
-      link.href = `mailto:${contactData.email}`;
-      link.hidden = false;
+  // The big link in the contact section is Telegram; email is used only if there is no Telegram.
+  const primary = contactData.telegram ? "telegram" : contactData.email ? "email" : null;
+  document.querySelectorAll("[data-contact-primary]").forEach(link => {
+    link.hidden = !primary;
+    if (!primary) return;
+    const icon = link.querySelector(".contact-primary-icon");
+    const text = link.querySelector(".contact-primary-text");
+    if (primary === "telegram") {
+      const handle = socialHandle(contactData.telegram);
+      link.href = `https://t.me/${handle}`;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.setAttribute("aria-label", `Telegram @${handle}`);
+      icon.removeAttribute("hidden");
+      text.textContent = `@${handle}`;
     } else {
-      link.hidden = true;
+      link.href = `mailto:${contactData.email}`;
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+      link.removeAttribute("aria-label");
+      icon.setAttribute("hidden", "");
+      text.innerHTML = emailHtml(contactData.email);
     }
   });
   document.querySelectorAll("[data-contact-telegram]").forEach(link => {
@@ -108,15 +128,15 @@ function renderContact(lang) {
       link.hidden = true;
     }
   });
-  document.querySelector("#contact-list").innerHTML = contactOrder.filter(key => contactData[key]).map(key => {
+  document.querySelector("#contact-list").innerHTML = contactOrder.filter(key => key !== primary && contactData[key]).map(key => {
     const value = contactData[key];
     const social = key === "telegram" || key === "instagram";
-    const shown = social ? "@" + socialHandle(value) : value;
+    const shownHtml = key === "email" ? emailHtml(value) : escapeHtml(social ? "@" + socialHandle(value) : value);
     const href = contactLink(key, value);
     const valueHtml = href
-      ? `<a class="contact-value" href="${escapeHtml(href)}"${social ? ' target="_blank" rel="noopener"' : ""}>${escapeHtml(shown)}</a>`
-      : `<span class="contact-value">${escapeHtml(shown)}</span>`;
-    return `<li><span class="contact-label">${stack(d => d.contactLabels[key], lang)}</span>${valueHtml}</li>`;
+      ? `<a class="contact-value" href="${escapeHtml(href)}"${social ? ' target="_blank" rel="noopener"' : ""}>${shownHtml}</a>`
+      : `<span class="contact-value">${shownHtml}</span>`;
+    return `<li class="contact-item-${key}"><span class="contact-label">${stack(d => d.contactLabels[key], lang)}</span>${valueHtml}</li>`;
   }).join("");
 }
 
