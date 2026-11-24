@@ -13,7 +13,8 @@
 #   address: Tashkent, Uzbekistan
 
 email: 
-phone: +998-99-953-33-52 , +998-93-245-81-04
+phone: +998-99-953-33-52
+phone: +998-93-245-81-04
 telegram: https://t.me/tashdevs  
 instagram:   
 address: Tashkent, Uzbekistan 
