@@ -85,9 +85,12 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--sky); outline-o
 .contact-eyebrow { margin: 0 0 20px; color: var(--sky); font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; }
 .contact-primary { display: inline-flex; align-items: center; gap: .3em; max-width: 100%; font-size: clamp(28px, 4.4vw, 56px); line-height: 1.2; font-weight: 600; letter-spacing: -.01em; text-decoration: none; }
 .contact-primary-icon { width: .8em; height: .8em; flex-shrink: 0; color: var(--sky); }
-.contact-primary-text { min-width: 0; overflow-wrap: break-word; text-decoration-line: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; text-decoration-color: rgba(0,165,242,.55); }
+.contact-primary-text { min-width: 0; overflow-wrap: break-word; }
 .contact-primary:hover .contact-primary-text { color: var(--sky); }
-.contact-lead { margin: 26px 0 0; max-width: 660px; color: var(--soft); font-size: 17px; line-height: 1.75; font-weight: 500; }
+.contact-pitch { margin-top: 30px; max-width: 660px; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.contact-pitch p { margin: 0; text-wrap: pretty; }
+.contact-question { color: var(--white); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; font-weight: 600; }
+.contact-lead { margin-top: 12px !important; color: var(--soft); font-size: 17px; line-height: 1.8; font-weight: 500; }
 .contact-list { list-style: none; margin: 56px 0 0; padding: 30px 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 28px 56px; }
 .contact-list:empty { display: none; }
 .contact-list li { flex: 0 0 auto; max-width: 100%; display: flex; flex-direction: column; gap: 8px; }
@@ -112,6 +115,7 @@ a.contact-value:hover { color: var(--sky); }
   .intro { padding: 64px 0 56px; }
   .intro h1 { font-size: clamp(22px, 6.6vw, 34px); letter-spacing: .1em; }
   .photo-band { height: clamp(260px, 46vh, 400px); }
+  .contact-question { font-size: 18px; }
   .contact-lead { font-size: 16px; }
   .contact-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 20px; margin-top: 44px; }
   .contact-list .contact-item-email { grid-column: 1 / -1; }

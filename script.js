@@ -8,7 +8,8 @@ const copy = {
     statement: "Innovatsion IT yechimlar",
     lead: "Mahsulot strategiyasi, dizayn va muhandislikni bir jamoada jamlaymiz. Biznes ehtiyojlariga mos raqamli mahsulotlar yaratamiz.",
     photoAlt: "Toshkent shahri va tog‘lar manzarasi",
-    contactLead: "Sizga veb-sayt, mobil ilova yoki jamoangiz vaqtini tejaydigan biznes tizimi kerakmi? Biz veb-saytlar, veb va mobil ilovalar, biznes platformalari, tizimlar integratsiyasi hamda sun’iy intellekt yordamida avtomatlashtirish yechimlarini yaratamiz. G‘oyangizni bizga yozing — uni aniq rejaga va ishlaydigan mahsulotga aylantirishga yordam beramiz.",
+    contactQuestion: "Sizga veb-sayt, mo&shy;bil ilova yoki ja&shy;mo&shy;angiz vaq&shy;ti&shy;ni te&shy;jay&shy;di&shy;gan biz&shy;nes ti&shy;zi&shy;mi ke&shy;rak&shy;mi?",
+    contactLead: "Biz veb-sayt&shy;lar, veb va mo&shy;bil ilo&shy;va&shy;lar, biz&shy;nes plat&shy;for&shy;ma&shy;la&shy;ri, ti&shy;zim&shy;lar in&shy;teg&shy;rat&shy;si&shy;ya&shy;si ham&shy;da sun’iy in&shy;tel&shy;lekt yor&shy;da&shy;mi&shy;da av&shy;to&shy;mat&shy;lash&shy;ti&shy;rish ye&shy;chim&shy;la&shy;ri&shy;ni ya&shy;ra&shy;ta&shy;miz. G‘o&shy;ya&shy;ngiz&shy;ni biz&shy;ga yo&shy;zing&nbsp;— uni aniq re&shy;ja&shy;ga va ish&shy;lay&shy;di&shy;gan mah&shy;su&shy;lot&shy;ga ay&shy;lan&shy;ti&shy;rish&shy;ga yor&shy;dam be&shy;ra&shy;miz.",
     services: "Raqamli mahsulotlar | Biznes platformalari | Tizimlar integratsiyasi | Avtomatlashtirish va AI",
     contactLabels: { email: "Email", phone: "Telefon", telegram: "Telegram", instagram: "Instagram", address: "Manzil", working_hours: "Ish vaqti" }
   },
@@ -21,7 +22,8 @@ const copy = {
     statement: "Инновационные IT-решения",
     lead: "Стратегия продукта, дизайн и разработка в одной команде. Создаём цифровые решения для конкретных задач бизнеса.",
     photoAlt: "Панорама Ташкента с горами",
-    contactLead: "Нужен сайт, мобильное приложение или система, которая сэкономит время вашей команды? Мы создаём сайты, веб- и мобильные приложения, бизнес-платформы, интеграции между системами и автоматизацию с помощью искусственного интеллекта. Напишите нам о своей идее — поможем превратить её в понятный план и работающий продукт.",
+    contactQuestion: "Нужен сайт, мобильное приложение или система, которая сэкономит время вашей команды?",
+    contactLead: "Мы создаём сайты, веб- и мобильные приложения, бизнес-платформы, интеграции между системами и автоматизацию с помощью искусственного интеллекта. Напишите нам о своей идее&nbsp;— поможем превратить её в понятный план и работающий продукт.",
     services: "Цифровые продукты | Бизнес-платформы | Интеграция систем | Автоматизация и ИИ",
     contactLabels: { email: "Email", phone: "Телефон", telegram: "Telegram", instagram: "Instagram", address: "Адрес", working_hours: "Часы работы" }
   },
@@ -34,7 +36,8 @@ const copy = {
     statement: "Innovative IT solutions",
     lead: "One focused team for product strategy, design and engineering—building digital products around real business needs.",
     photoAlt: "Tashkent skyline with mountains",
-    contactLead: "Need a website, a mobile app or a system that saves your team time? We build websites, web and mobile apps, business platforms, integrations between your systems and AI-powered automation. Write to us about your idea — we will help turn it into a clear plan and a working product.",
+    contactQuestion: "Need a website, a mobile app or a system that saves your team time?",
+    contactLead: "We build websites, web and mobile apps, business platforms, integrations between your systems and AI-powered automation. Write to us about your idea&nbsp;— we will help turn it into a clear plan and a working product.",
     services: "Digital products | Business platforms | Systems integration | Automation & AI",
     contactLabels: { email: "Email", phone: "Phone", telegram: "Telegram", instagram: "Instagram", address: "Address", working_hours: "Working hours" }
   }
