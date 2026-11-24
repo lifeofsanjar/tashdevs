@@ -12,9 +12,9 @@
 #   instagram: lifeofsanjar      (username only)
 #   address: Tashkent, Uzbekistan
 
-email: sanjarreyimberdiyev33@gmail.com
-phone: +998-99-953-33-52
-telegram: lifeofsanjar  
-instagram: lifeofsanjar  
+email: 
+phone: +998-99-953-33-52 , +998-93-245-81-04
+telegram: https://t.me/tashdevs  
+instagram:   
 address: Tashkent, Uzbekistan 
 working_hours: 9:00 - 18:00
